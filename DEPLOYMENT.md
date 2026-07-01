@@ -18,10 +18,20 @@
 ## 3. Connect Looker Studio
 Connect it via Looker Studio → Create → Data Source → Google Sheets → select the sheet used by this project
 
-## 4. (Optional) Generate mock test data
+## 4. Generate mock test data
 ```bash
 python data/generate_data.py
 ```
+This has no external dependencies — it only uses Python's standard library (`csv`, `random`, `datetime`).
+
+Running it produces two files in the `data/` folder:
+- `sales_data.csv` — daily transaction-level sales across 6 products and 4 regions, with 
+  weekday/weekend variance, regional bias, and seasonal uplift built in
+- `targets.csv` — monthly revenue targets per product
+
+**To load this into the pipeline:** open the Google Sheet used by this project → 
+**File → Import → Upload** → select each CSV → choose "Replace current sheet" or "Insert new sheet" 
+depending on which tab the Apps Script and Looker Studio dashboard are reading from.
 
 ## 5. Verify
 Check your inbox for the alert email shown in `alert_email.png` to confirm triggers fire correctly.
